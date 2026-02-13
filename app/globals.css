@@ -10,39 +10,39 @@
 
 @layer base {
   :root {
-    --background: 30 5% 6%;
-    --foreground: 40 20% 92%;
-    --card: 30 5% 9%;
-    --card-foreground: 40 20% 92%;
-    --popover: 30 5% 9%;
-    --popover-foreground: 40 20% 92%;
-    --primary: 40 65% 55%;
-    --primary-foreground: 30 5% 6%;
-    --secondary: 30 5% 14%;
-    --secondary-foreground: 40 20% 85%;
-    --muted: 30 4% 14%;
-    --muted-foreground: 30 8% 55%;
-    --accent: 40 65% 55%;
-    --accent-foreground: 30 5% 6%;
+    --background: 30 6% 5%;
+    --foreground: 38 25% 93%;
+    --card: 30 5% 8%;
+    --card-foreground: 38 25% 93%;
+    --popover: 30 5% 8%;
+    --popover-foreground: 38 25% 93%;
+    --primary: 39 60% 52%;
+    --primary-foreground: 30 8% 5%;
+    --secondary: 30 5% 12%;
+    --secondary-foreground: 38 18% 80%;
+    --muted: 30 4% 13%;
+    --muted-foreground: 30 8% 50%;
+    --accent: 39 60% 52%;
+    --accent-foreground: 30 8% 5%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 30 8% 18%;
-    --input: 30 8% 18%;
-    --ring: 40 65% 55%;
-    --chart-1: 40 65% 55%;
+    --border: 30 6% 15%;
+    --input: 30 6% 15%;
+    --ring: 39 60% 52%;
+    --chart-1: 39 60% 52%;
     --chart-2: 30 40% 40%;
     --chart-3: 35 50% 45%;
     --chart-4: 25 60% 50%;
     --chart-5: 45 55% 60%;
-    --radius: 0.5rem;
-    --sidebar-background: 30 5% 8%;
-    --sidebar-foreground: 40 20% 92%;
-    --sidebar-primary: 40 65% 55%;
-    --sidebar-primary-foreground: 30 5% 6%;
-    --sidebar-accent: 30 5% 14%;
-    --sidebar-accent-foreground: 40 20% 92%;
-    --sidebar-border: 30 8% 18%;
-    --sidebar-ring: 40 65% 55%;
+    --radius: 0.75rem;
+    --sidebar-background: 30 5% 7%;
+    --sidebar-foreground: 38 25% 93%;
+    --sidebar-primary: 39 60% 52%;
+    --sidebar-primary-foreground: 30 8% 5%;
+    --sidebar-accent: 30 5% 12%;
+    --sidebar-accent-foreground: 38 25% 93%;
+    --sidebar-border: 30 6% 15%;
+    --sidebar-ring: 39 60% 52%;
   }
 }
 
@@ -52,12 +52,29 @@
   }
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Custom scrollbar for chatbot */
+/* Premium soft scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.3);
+}
+
+/* Chatbot scrollbar */
 .chat-scroll::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 .chat-scroll::-webkit-scrollbar-track {
   background: transparent;
@@ -67,7 +84,58 @@
   border-radius: 9999px;
 }
 
-/* Smooth scroll */
 html {
   scroll-behavior: smooth;
+}
+
+/* Era atmospheric gradients */
+.era-paris {
+  --era-color: 40 80% 50%;
+  --era-glow: 35 90% 55%;
+}
+.era-cretaceous {
+  --era-color: 155 50% 35%;
+  --era-glow: 150 60% 40%;
+}
+.era-florence {
+  --era-color: 25 70% 45%;
+  --era-glow: 20 75% 50%;
+}
+
+/* Timeline pulse */
+@keyframes timeline-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.3); }
+  50% { box-shadow: 0 0 0 10px hsl(var(--primary) / 0); }
+}
+
+/* Particle drift */
+@keyframes drift {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translate(var(--dx), var(--dy)) rotate(360deg); opacity: 0; }
+}
+
+/* Glow pulse */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.45; }
+}
+
+/* Era ambient pulse */
+@keyframes era-ambient {
+  0%, 100% { opacity: 0.02; }
+  50% { opacity: 0.06; }
+}
+
+/* Luxe shimmer for buttons */
+@keyframes luxe-shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* Selection color */
+::selection {
+  background: hsl(var(--primary) / 0.2);
+  color: hsl(var(--foreground));
 }
