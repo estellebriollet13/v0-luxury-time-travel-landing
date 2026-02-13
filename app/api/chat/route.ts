@@ -27,7 +27,9 @@ Destinations :
 Prix indicatifs :
 - Paris 1889 : 4 900€
 - Florence Renaissance : 5 500€
-- Crétacé : 9 900€`
+- Crétacé : 9 900€
+Pour information, les enfants sont autorisés pour les voyages dans le temps.
+`
         },
         ...messages,
       ],
