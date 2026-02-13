@@ -6,8 +6,8 @@ import { Menu, X } from "lucide-react"
 const navLinks = [
   { label: "Destinations", href: "#destinations" },
   { label: "Experience", href: "#experience" },
+  { label: "Reservation", href: "#booking" },
   { label: "A Propos", href: "#about" },
-  { label: "Contact", href: "#contact" },
 ]
 
 export function Navbar() {
@@ -58,7 +58,7 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
+            href="#booking"
             className="rounded-full border border-primary/50 bg-primary/10 px-7 py-2.5 text-[11px] font-medium tracking-[0.15em] text-primary uppercase transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
           >
             Reserver
@@ -92,7 +92,7 @@ export function Navbar() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="#booking"
               onClick={() => setMobileOpen(false)}
               className="mt-2 rounded-full border border-primary bg-primary/10 px-6 py-3 text-center text-sm font-medium tracking-wider text-primary uppercase transition-all hover:bg-primary hover:text-primary-foreground"
             >

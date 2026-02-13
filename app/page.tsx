@@ -2,6 +2,7 @@ import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { DestinationsSection } from "@/components/destinations-section"
 import { ExperienceSection } from "@/components/experience-section"
+import { BookingSection } from "@/components/booking-section"
 import { AboutSection } from "@/components/about-section"
 import { Footer } from "@/components/footer"
 import { ChatbotWidget } from "@/components/chatbot-widget"
@@ -13,6 +14,7 @@ export default function HomePage() {
       <HeroSection />
       <DestinationsSection />
       <ExperienceSection />
+      <BookingSection />
       <AboutSection />
       <Footer />
       <ChatbotWidget />
