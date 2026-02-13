@@ -1,102 +1,110 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Shield, Gem, Compass } from "lucide-react"
-
-const pillars = [
-  {
-    icon: Shield,
-    title: "Temporal Safety",
-    description:
-      "Every journey is meticulously calibrated by our team of chrono-engineers, ensuring absolute safety across every timeline.",
-  },
-  {
-    icon: Gem,
-    title: "Unmatched Luxury",
-    description:
-      "From bespoke period attire to private temporal suites, every detail is crafted for the most discerning travellers.",
-  },
-  {
-    icon: Compass,
-    title: "Expert Guides",
-    description:
-      "Our historians and temporal navigators accompany you through time, providing unparalleled insight into every era.",
-  },
-]
 
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true)
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     )
-    if (sectionRef.current) observer.observe(sectionRef.current)
+    if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
 
   return (
     <section
       id="about"
-      ref={sectionRef}
-      className="relative border-t border-border/50 py-32"
+      ref={ref}
+      className="relative border-t border-border/40 py-32"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-primary">
-            Established 2087
-          </p>
-          <h2
-            className={`mt-4 font-serif text-4xl tracking-tight text-foreground transition-all duration-700 md:text-5xl ${
+        <div className="grid items-center gap-16 lg:grid-cols-2">
+          <div
+            className={`transition-all duration-1000 ${
               isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-6 opacity-0"
+                ? "translate-x-0 opacity-100"
+                : "-translate-x-12 opacity-0"
             }`}
           >
-            <span className="text-balance">
-              The Art of Temporal Exploration
-            </span>
-          </h2>
-          <p
-            className={`mt-6 text-lg leading-relaxed text-muted-foreground transition-all delay-200 duration-700 ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-6 opacity-0"
-            }`}
-          >
-            For nearly four decades, Chronos Voyages has redefined the meaning
-            of luxury travel. We do not merely visit the past or peer into the
-            future — we immerse you in the very fabric of time, with the grace
-            and exclusivity befitting our distinguished clientele.
-          </p>
-        </div>
-
-        <div className="mt-20 grid gap-12 md:grid-cols-3">
-          {pillars.map((pillar, i) => (
-            <div
-              key={pillar.title}
-              className={`group text-center transition-all duration-700 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0"
-              }`}
-              style={{ transitionDelay: `${300 + i * 150}ms` }}
-            >
-              <div className="mx-auto flex h-16 w-16 items-center justify-center border border-border transition-colors group-hover:border-primary">
-                <pillar.icon className="h-7 w-7 text-primary" />
-              </div>
-              <h3 className="mt-6 font-serif text-xl text-foreground">
-                {pillar.title}
-              </h3>
-              <p className="mt-3 leading-relaxed text-muted-foreground">
-                {pillar.description}
+            <p className="mb-4 text-[10px] tracking-[0.5em] text-primary uppercase">
+              Notre histoire
+            </p>
+            <h2 className="font-serif text-4xl tracking-tight text-foreground md:text-5xl">
+              <span className="text-balance">
+                {"Pionniers du voyage temporel depuis 2031"}
+              </span>
+            </h2>
+            <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground">
+              <p>
+                {
+                  "Fondee par le physicien Dr. Helena Varnier et l'ingenieur quantique Maxime Durand, Chronos Voyages est nee d'une vision audacieuse : rendre le voyage dans le temps accessible aux amoureux de l'histoire et du luxe."
+                }
+              </p>
+              <p>
+                {
+                  "Notre technologie brevetee de navigation chrono-quantique permet des deplacements temporels d'une precision absolue, dans un confort digne des plus grands palaces."
+                }
+              </p>
+              <p>
+                {
+                  "Chaque expedition est concue sur mesure par nos historiens et designers d'experience, pour garantir une immersion totale et respectueuse du continuum temporel."
+                }
               </p>
             </div>
-          ))}
+          </div>
+
+          <div
+            className={`transition-all delay-300 duration-1000 ${
+              isVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-12 opacity-0"
+            }`}
+          >
+            <div className="relative rounded-2xl border border-border/50 bg-card p-10">
+              <div className="absolute -top-3 left-10 rounded-full bg-primary px-4 py-1 text-[10px] font-medium tracking-[0.15em] text-primary-foreground uppercase">
+                Nos Engagements
+              </div>
+              <div className="mt-4 space-y-8">
+                {[
+                  {
+                    number: "01",
+                    title: "Paradoxe Zero",
+                    text: "Notre protocole strict garantit zero impact sur la ligne temporelle. Observez sans alterer.",
+                  },
+                  {
+                    number: "02",
+                    title: "Immersion Totale",
+                    text: "Costumes d'epoque, monnaie locale et briefing historique complet avant chaque depart.",
+                  },
+                  {
+                    number: "03",
+                    title: "Retour Garanti",
+                    text: "Triple systeme de securite quantique. Aucun voyageur n'a jamais ete perdu dans le temps.",
+                  },
+                ].map((item) => (
+                  <div key={item.number} className="flex gap-5">
+                    <span className="font-serif text-3xl text-primary/30">
+                      {item.number}
+                    </span>
+                    <div>
+                      <h3 className="mb-1 font-serif text-lg text-foreground">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-muted-foreground">
+                        {item.text}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
