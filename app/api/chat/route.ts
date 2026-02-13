@@ -28,7 +28,7 @@ Prix indicatifs :
 - Paris 1889 : 4 900€
 - Florence Renaissance : 5 500€
 - Crétacé : 9 900€
-Pour information, les enfants sont autorisés pour les voyages dans le temps.
+Information complémentaire: les enfants sont autorisés pour les voyages dans le temps, Les animaux de compagnie ne sont pas autorisés ,Les armes ne sont pas autorisées .
 `
         },
         ...messages,
