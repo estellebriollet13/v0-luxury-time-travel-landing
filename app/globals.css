@@ -71,3 +71,59 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Era atmospheric gradients */
+.era-paris {
+  --era-color: 40 80% 50%;
+  --era-glow: 35 90% 55%;
+}
+.era-cretaceous {
+  --era-color: 155 50% 35%;
+  --era-glow: 150 60% 40%;
+}
+.era-florence {
+  --era-color: 25 70% 45%;
+  --era-glow: 20 75% 50%;
+}
+
+/* Timeline pulse */
+@keyframes timeline-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px hsl(var(--primary) / 0);
+  }
+}
+
+/* Particle drift */
+@keyframes drift {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) rotate(360deg); opacity: 0; }
+}
+
+/* Subtle glow pulse */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* Scan line */
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Count up shimmer */
+@keyframes reveal-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Era ambient pulse for card backgrounds */
+@keyframes era-ambient {
+  0%, 100% { opacity: 0.03; }
+  50% { opacity: 0.08; }
+}
