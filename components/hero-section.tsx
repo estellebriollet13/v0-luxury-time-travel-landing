@@ -4,13 +4,18 @@ import { useEffect, useState, useRef, useCallback } from "react"
 import Image from "next/image"
 import { ChevronDown } from "lucide-react"
 
-function FloatingParticle({ delay, duration, size, x, y }: {
+interface ParticleData {
   delay: number
   duration: number
   size: number
   x: string
   y: string
-}) {
+  dx: string
+  dy: string
+  id: number
+}
+
+function FloatingParticle({ delay, duration, size, x, y, dx, dy }: Omit<ParticleData, "id">) {
   return (
     <div
       className="absolute rounded-full bg-primary/20"
@@ -20,8 +25,8 @@ function FloatingParticle({ delay, duration, size, x, y }: {
         left: x,
         top: y,
         animation: `drift ${duration}s ease-in-out ${delay}s infinite`,
-        ["--dx" as string]: `${(Math.random() - 0.5) * 120}px`,
-        ["--dy" as string]: `${(Math.random() - 0.5) * 120}px`,
+        ["--dx" as string]: dx,
+        ["--dy" as string]: dy,
       }}
     />
   )
@@ -76,21 +81,27 @@ function AnimatedCounter({ target, suffix = "" }: { target: string; suffix?: str
   )
 }
 
-const particles = Array.from({ length: 18 }, (_, i) => ({
-  delay: Math.random() * 8,
-  duration: 10 + Math.random() * 15,
-  size: 2 + Math.random() * 4,
-  x: `${Math.random() * 100}%`,
-  y: `${Math.random() * 100}%`,
-  id: i,
-}))
+function generateParticles(): ParticleData[] {
+  return Array.from({ length: 18 }, (_, i) => ({
+    delay: Math.random() * 8,
+    duration: 10 + Math.random() * 15,
+    size: 2 + Math.random() * 4,
+    x: `${Math.random() * 100}%`,
+    y: `${Math.random() * 100}%`,
+    dx: `${(Math.random() - 0.5) * 120}px`,
+    dy: `${(Math.random() - 0.5) * 120}px`,
+    id: i,
+  }))
+}
 
 export function HeroSection() {
   const [loaded, setLoaded] = useState(false)
   const [scrollY, setScrollY] = useState(0)
+  const [particles, setParticles] = useState<ParticleData[]>([])
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    setParticles(generateParticles())
     setLoaded(true)
   }, [])
 
@@ -123,12 +134,14 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background" />
       </div>
 
-      {/* Floating particles layer */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        {particles.map((p) => (
-          <FloatingParticle key={p.id} {...p} />
-        ))}
-      </div>
+      {/* Floating particles layer — rendered only after mount to avoid hydration mismatch */}
+      {particles.length > 0 && (
+        <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+          {particles.map(({ id, ...rest }) => (
+            <FloatingParticle key={id} {...rest} />
+          ))}
+        </div>
+      )}
 
       {/* Ambient glow orbs */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
